@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>300일 퍼즐</title>
+  <link rel="stylesheet" href="style.css" />
+  
+  <!-- PWA 설정 코드 -->
+  <link rel="manifest" href="./manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="./icon-192.png">
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js');
+    }
+  </script>
+</head>
+<body>
+
+  <section id="login-screen" class="screen active">
+    <div class="login-box">
+      <h1>우리의 300일</h1>
+      <p>비밀번호를 입력해 주세요</p>
+
+      <label>아이디</label>
+      <input type="text" value="우리가 만나기 시작한 날" disabled />
+
+      <label>비밀번호</label>
+      <input id="password" type="password" placeholder="비밀번호 입력" inputmode="numeric" pattern="[0-9]*" maxlength="6" />
+
+      <div id="login-error"></div>
+      <button id="login-btn">로그인</button>
+    </div>
+  </section>
+
+  <section id="game-screen" class="screen">
+    <h2>차누: 퍼즐을 하나씩 맞춰봥!</h2>
+
+    <div class="puzzle-wrap">
+      <svg id="puzzle-svg" viewBox="-25 -25 450 650"></svg>
+    </div>
+
+    <p id="progress">완성도 0 / 24</p>
+  </section>
+
+  <div id="quiz-modal" class="modal">
+    <div class="quiz-box">
+      <h3>QUIZ</h3>
+      <p id="quiz-question"></p>
+      <p id="lives">남은 기회 💙 💙 💙</p>
+      <div id="options"></div>
+      <p id="wrong-text"></p>
+      <button id="close-btn" class="gray">닫기</button>
+    </div>
+  </div>
+
+  <div id="memory-modal" class="modal">
+    <div class="memory-box">
+      <h3>🐥: 아부부!! 정답이야!</h3>
+      <p id="memory-text"></p>
+      <button id="memory-ok-btn">확인</button>
+    </div>
+  </div>
+
+  <div id="final-modal" class="modal">
+    <div class="final-box">
+      <div class="heart">💗</div>
+      <h1>300일 축하해.</h1>
+      <p>앞으로도<br>예쁜 사랑하자.</p>
+      <button onclick="location.reload()">확인</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
